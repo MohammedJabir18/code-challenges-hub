@@ -1,29 +1,26 @@
 class Solution:
     def romanToInt(self, s: str) -> int:
-        roman_values = {
-        'I': 1,
-        'V': 5,
-        'X': 10,
-        'L': 50,
-        'C': 100,
-        'D': 500,
-        'M': 1000
-    }
-    
-        result = 0
-        prev_value = 0
+        roman = {
+            'I': 1,
+            'V': 5,
+            'X': 10,
+            'L': 50,
+            'C': 100,
+            'D': 500,
+            'M': 1000
+        }
         
-        for char in reversed(s):
-            current_value = roman_values[char]
-            
-            if current_value < prev_value:
-                result -= current_value
+        total = 0
+        n = len(s)
+        
+        for i in range(n):
+            if i < n - 1 and roman[s[i]] < roman[s[i + 1]]:
+                total -= roman[s[i]]
             else:
-                result += current_value
+                total += roman[s[i]]
                 
-            prev_value = current_value
-        
-        return result
+        return total
 
-
-        
+# Synced seamlessly with LeetHub Pro
+# Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+# Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
